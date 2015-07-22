@@ -7,11 +7,19 @@
     <h1>To Do List</h1>
     <form id="todo">
         <p>Enter Your List Here:
-            <input type="text" name="list">
+            <input id="input" type="text" name="list">
         </p>
     </form>
-
-    <button id="submit">Submit</button>
-
+    <button id="submit">Add to List</button>
+    <section>
+        <p id="list"></p>
+    </section>
 </body>
+<script type="text/javascript" src="jquery.js"></script>
+<script>
+     $('#submit').bind('click', function() {
+        var value = $('#input').val();
+        $('#list').append('<ul>' + value + '</ul>');
+    });
+</script>
 </html>
