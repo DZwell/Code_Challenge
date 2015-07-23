@@ -17,9 +17,18 @@
 </body>
 <script type="text/javascript" src="jquery.js"></script>
 <script>
-     $('#submit').bind('click', function() {
+     $('#submit').click(function() {
         var value = $('#input').val();
-        $('#list').append('<ul>' + value + '</ul>');
+        $('#list').prepend('<li>' + value + '</li>');
+        $('#input').val('');
     });
+
+     $('#input').keypress(function(e) {
+        var key = e.which;
+        if(key == 13) {
+            $('#submit').click();
+            return false;
+        }
+     });
 </script>
 </html>
