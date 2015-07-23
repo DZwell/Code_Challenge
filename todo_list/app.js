@@ -8,8 +8,9 @@ $(function() {
            text.fadeOut(2000);
         }
         else {
-            $('#list').prepend('<li>' + value + '</li>');
+            $('#list').prepend('<li>' + value + '</li>' + '<br>');
             $('#input').val('');
+            $removeItem();
         }
     });
 
@@ -21,7 +22,9 @@ $(function() {
         }
     });
 
-    $('li').on('click', function() {
-        $('li').remove();
-    });
+    function $removeItem() {
+        $('li').click(function(e) {
+            $(this).remove();
+        });
+    }
 });
