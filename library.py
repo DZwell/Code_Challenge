@@ -17,7 +17,8 @@ class Library(object):
         return self.shelves
 
     def report_books(self):
-        print(self.shelves)
+        for book in self.shelves:
+            print(book)
 
 
 class Shelf(object):
@@ -53,35 +54,49 @@ shelf2 = Shelf([])
 
 harry_potter = Book('Harry Potter')
 yellow_garden = Book('The Yellow Garden')
-golden_compass = Book('The Golden Compass')
 
 
 shelf1.add_books(str(harry_potter))
-shelf1.add_books(str(yellow_garden))
-
 seattle.add_to_shelf(str(shelf1))
 
-seattle.report_books()
 
+while True:
 
-seattle.add_to_shelf(str(shelf1))
+    print('\nWelcome to the Library!\n Choose from the following:\n'
+          'L - See a (L)ist of books.\nA - (A)dd a book.\nR - (R)emove a book.\n'
+          'Q - (Q)uit')
+    user_choice = input('> ').upper()
 
-seattle.report_books()
+    if (user_choice == 'Q'):
+        sys.exit()
+    elif (user_choice == 'L'):
+        seattle.report_books()
+    elif (user_choice == 'A'):
 
-shelf2.add_books(str(golden_compass))
+        while True:
+            print('Type the title of the book you wish you add or (Q)uit:')
+            title = input('> ')
+            if (title == 'Q' or title == 'q'):
+                break
+            else:
+                user_book = Book(title)
+                shelf1.add_books(str(title))
+                seattle.add_to_shelf(str(shelf1))
+                break
+    elif (user_choice == 'R'):
 
-seattle.add_to_shelf(str(shelf2))
+        while True:
+            print('Type the title of the book you wish to remove or (Q)uit:')
+            removed = input('> ')
+            if (removed == 'Q' or removed == 'q'):
+                break
+            else:
+                if (removed not in shelf1):
+                    print('Book cannot be found!')
+                else:
+                    shelf1.remove_books(removed)
+                    break
 
-seattle.report_books()
-
-shelf1.remove_books(str(harry_potter))
-
-seattle.report_books()
-
-shelf1.add_books(str(harry_potter))
-
-
-seattle.report_books()
 
 
 
