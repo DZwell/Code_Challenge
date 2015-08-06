@@ -17,8 +17,8 @@ class Library(object):
         return self.shelves
 
     def report_books(self):
-        for book in self.shelves:
-            print(book)
+        for books in self.shelves:
+            print(books)
 
 
 class Shelf(object):
@@ -62,7 +62,7 @@ seattle.add_to_shelf(str(shelf1))
 
 while True:
 
-    print('\nWelcome to the Library!\n Choose from the following:\n'
+    print('\nWelcome to the Library!\nChoose from the following:\n'
           'L - See a (L)ist of books.\nA - (A)dd a book.\nR - (R)emove a book.\n'
           'Q - (Q)uit')
     user_choice = input('> ').upper()
@@ -72,30 +72,33 @@ while True:
     elif (user_choice == 'L'):
         seattle.report_books()
     elif (user_choice == 'A'):
-
         while True:
             print('Type the title of the book you wish you add or (Q)uit:')
-            title = input('> ')
+            title = input('> ').title()
             if (title == 'Q' or title == 'q'):
                 break
             else:
-                user_book = Book(title)
-                shelf1.add_books(str(title))
-                seattle.add_to_shelf(str(shelf1))
-                break
+                if (title in shelf1.books):
+                    print('Title already exists in library.\n')
+                else:
+                    shelf1.add_books(str(title))
+                    seattle.add_to_shelf(str(shelf1))
+                    break
     elif (user_choice == 'R'):
-
         while True:
             print('Type the title of the book you wish to remove or (Q)uit:')
-            removed = input('> ')
+            removed = input('> ').title()
             if (removed == 'Q' or removed == 'q'):
                 break
             else:
-                if (removed not in shelf1):
-                    print('Book cannot be found!')
+                if (removed not in shelf1.books):
+                    print('Book not found in list.\n')
                 else:
                     shelf1.remove_books(removed)
+                    seattle.add_to_shelf(str(shelf1))
                     break
+
+
 
 
 
