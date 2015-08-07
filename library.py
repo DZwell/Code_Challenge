@@ -17,8 +17,9 @@ class Library(object):
         return self.shelves
 
     def report_books(self):
-        for books in self.shelves:
-            print(books)
+        print('Shelf 1:', shelf1.books,
+              '\nShelf 2:', shelf2.books,
+              '\nShelf 3:', shelf3.books)
 
 
 class Shelf(object):
@@ -51,13 +52,21 @@ seattle = Library([])
 
 shelf1 = Shelf([])
 shelf2 = Shelf([])
+shelf3 = Shelf([])
 
 harry_potter = Book('Harry Potter')
 yellow_garden = Book('The Yellow Garden')
+phantom = Book('The Phantom Toll Booth')
 
 
 shelf1.add_books(str(harry_potter))
 seattle.add_to_shelf(str(shelf1))
+
+shelf2.add_books(str(yellow_garden))
+seattle.add_to_shelf(str(shelf2))
+
+shelf3.add_books(str(phantom))
+seattle.add_to_shelf(str(shelf3))
 
 
 while True:
@@ -73,27 +82,29 @@ while True:
         seattle.report_books()
     elif (user_choice == 'A'):
         while True:
-            print('Type the title of the book you wish you add or (Q)uit:')
+            print('\nType the title of the book you wish you add or (Q)uit:')
             title = input('> ').title()
             if (title == 'Q' or title == 'q'):
                 break
             else:
                 if (title in shelf1.books):
-                    print('Title already exists in library.\n')
+                    print('\nTitle already exists.\n')
                 else:
+                    print('\nTitle has been added to shelf.')
                     shelf1.add_books(str(title))
                     seattle.add_to_shelf(str(shelf1))
                     break
     elif (user_choice == 'R'):
         while True:
-            print('Type the title of the book you wish to remove or (Q)uit:')
+            print('\nType the title of the book you wish to remove or (Q)uit:')
             removed = input('> ').title()
             if (removed == 'Q' or removed == 'q'):
                 break
             else:
                 if (removed not in shelf1.books):
-                    print('Book not found in list.\n')
+                    print('\nBook not found in on shelf.\n')
                 else:
+                    print('\nTitle has been removed from shelf.')
                     shelf1.remove_books(removed)
                     seattle.add_to_shelf(str(shelf1))
                     break
