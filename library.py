@@ -30,15 +30,30 @@ class Shelf(object):
         return str(self.books)
 
     def add_books(self, book):
-        self.books.append(book)
-        return self.books
+        if (book in self.books):
+            Book.book_id += 1
+            self.books.append(book + '(%d)' % (Book.book_id))
+            return self.books
+        else:
+            self.books.append(book)
+            return self.books
 
     def remove_books(self, book):
-        self.books.remove(book)
-        return self.books
+        if (book not in self.books):
+            print('Title does not exist on shelf.')
+        else:
+            if (Book.book_id > 0):
+                Book.book_id -= 1
+                self.books.remove(book)
+                return self.books
+            else:
+                self.books.remove(book)
+                return self.books
 
 
 class Book(object):
+
+    book_id = 0
 
     def __init__(self, title):
         self.title = title
@@ -59,6 +74,7 @@ phantom = Book('The Phantom Toll Booth')
 hobbit = Book('The Hobbit')
 websters = Book('Websters Dictionary')
 guide = Book('Python for Dummies')
+jane = Book('Sense and Sensibility')
 
 
 shelf1.add_books(str(harry_potter))
@@ -73,9 +89,7 @@ seattle.add_to_shelf(str(shelf3))
 
 if __name__ == '__main__':
 
-    print('\nShelf 1: {}'.format(shelf1))
-    print('Shelf 2: {}'.format(shelf2))
-    print('Shelf 3: {}'.format(shelf3))
+    seattle.report_books()
 
     print("\nAdding 'The Hobbit' to shelf 1:")
     shelf1.add_books(str(hobbit))
@@ -85,12 +99,18 @@ if __name__ == '__main__':
     shelf2.add_books(str(websters))
     print('Shelf 2: {}'.format(shelf2))
 
-    print("\nAdding 'Python for Dummies' to shelf 3:")
-    shelf3.add_books(str(guide))
-    print('Shelf 3: {}'.format(shelf3))
+    print('\nAdding additional copies of existent book:')
+    shelf2.add_books(str(yellow_garden))
+    print('Shelf 2: {}'.format(shelf2))
+    shelf2.add_books(str(yellow_garden))
+    print('Shelf 2: {}'.format(shelf2))
 
-    print("\nHere's the Library:")
+    print('\nRemoving copy of existent book:')
+    shelf2.remove_books(str(yellow_garden))
     seattle.report_books()
+
+    print('\nTrying to remove non-existent book:')
+    shelf3.remove_books(str(jane))
 
     print("\nRemoving 'The Hobbit' from shelf 1:")
     shelf1.remove_books(str(hobbit))
@@ -99,6 +119,8 @@ if __name__ == '__main__':
     print("\nRemoving 'Harry Potter' from shelf 1:")
     shelf1.remove_books(str(harry_potter))
     seattle.report_books()
+
+
 
 
 
