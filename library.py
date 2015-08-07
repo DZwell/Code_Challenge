@@ -4,7 +4,6 @@
 # Each shelf should know what books it contains.
 # Create methods to add and remove a book from a shelf.
 # The library should have a method to report all books it contains.
-import sys
 
 
 class Library(object):
@@ -45,7 +44,7 @@ class Book(object):
         self.title = title
 
     def __str__(self):
-        return str(self.title)
+        return self.title
 
 
 seattle = Library([])
@@ -57,6 +56,9 @@ shelf3 = Shelf([])
 harry_potter = Book('Harry Potter')
 yellow_garden = Book('The Yellow Garden')
 phantom = Book('The Phantom Toll Booth')
+hobbit = Book('The Hobbit')
+websters = Book('Websters Dictionary')
+guide = Book('Python for Dummies')
 
 
 shelf1.add_books(str(harry_potter))
@@ -69,45 +71,38 @@ shelf3.add_books(str(phantom))
 seattle.add_to_shelf(str(shelf3))
 
 
-while True:
+if __name__ == '__main__':
 
-    print('\nWelcome to the Library!\nChoose from the following:\n'
-          'L - See a (L)ist of books.\nA - (A)dd a book.\nR - (R)emove a book.\n'
-          'Q - (Q)uit')
-    user_choice = input('> ').upper()
+    print('\nShelf 1: {}'.format(shelf1))
+    print('Shelf 2: {}'.format(shelf2))
+    print('Shelf 3: {}'.format(shelf3))
 
-    if (user_choice == 'Q'):
-        sys.exit()
-    elif (user_choice == 'L'):
-        seattle.report_books()
-    elif (user_choice == 'A'):
-        while True:
-            print('\nType the title of the book you wish you add or (Q)uit:')
-            title = input('> ').title()
-            if (title == 'Q' or title == 'q'):
-                break
-            else:
-                if (title in shelf1.books):
-                    print('\nTitle already exists.\n')
-                else:
-                    print('\nTitle has been added to shelf.')
-                    shelf1.add_books(str(title))
-                    seattle.add_to_shelf(str(shelf1))
-                    break
-    elif (user_choice == 'R'):
-        while True:
-            print('\nType the title of the book you wish to remove or (Q)uit:')
-            removed = input('> ').title()
-            if (removed == 'Q' or removed == 'q'):
-                break
-            else:
-                if (removed not in shelf1.books):
-                    print('\nBook not found in on shelf.\n')
-                else:
-                    print('\nTitle has been removed from shelf.')
-                    shelf1.remove_books(removed)
-                    seattle.add_to_shelf(str(shelf1))
-                    break
+    print("\nAdding 'The Hobbit' to shelf 1:")
+    shelf1.add_books(str(hobbit))
+    print('Shelf 1: {}'.format(shelf1))
+
+    print("\nAdding 'Websters Dictionary' to shelf 2:")
+    shelf2.add_books(str(websters))
+    print('Shelf 2: {}'.format(shelf2))
+
+    print("\nAdding 'Python for Dummies' to shelf 3:")
+    shelf3.add_books(str(guide))
+    print('Shelf 3: {}'.format(shelf3))
+
+    print("\nHere's the Library:")
+    seattle.report_books()
+
+    print("\nRemoving 'The Hobbit' from shelf 1:")
+    shelf1.remove_books(str(hobbit))
+    seattle.report_books()
+
+    print("\nRemoving 'Harry Potter' from shelf 1:")
+    shelf1.remove_books(str(harry_potter))
+    seattle.report_books()
+
+
+
+
 
 
 
