@@ -7,11 +7,12 @@
 
 
 class Library(object):
+    '''Class to hold shelves of books'''
 
     def __init__(self, shelves):
         self.shelves = []
 
-    def add_to_shelf(self, shelf):
+    def add_shelves(self, shelf):
         self.shelves.append(shelf)
         return self.shelves
 
@@ -22,6 +23,7 @@ class Library(object):
 
 
 class Shelf(object):
+    '''Class to hold books'''
 
     def __init__(self, books):
         self.books = []
@@ -48,6 +50,7 @@ class Shelf(object):
 
 class Book(object):
 
+    #variable to store unique id for multiple copies of book.
     book_id = 0
 
     def __init__(self, title):
@@ -57,33 +60,30 @@ class Book(object):
         return self.title
 
 
-seattle = Library([])
-
-shelf1 = Shelf([])
-shelf2 = Shelf([])
-shelf3 = Shelf([])
-
-harry_potter = Book('Harry Potter')
-yellow_garden = Book('The Yellow Garden')
-phantom = Book('The Phantom Toll Booth')
-hobbit = Book('The Hobbit')
-websters = Book('Websters Dictionary')
-guide = Book('Python for Dummies')
-jane = Book('Sense and Sensibility')
-
-
-shelf1.add_books(str(harry_potter))
-seattle.add_to_shelf(str(shelf1))
-
-shelf2.add_books(str(yellow_garden))
-seattle.add_to_shelf(str(shelf2))
-
-shelf3.add_books(str(phantom))
-seattle.add_to_shelf(str(shelf3))
-
-
 if __name__ == '__main__':
 
+    seattle = Library([])
+
+    shelf1 = Shelf([])
+    shelf2 = Shelf([])
+    shelf3 = Shelf([])
+
+    harry_potter = Book('Harry Potter')
+    yellow_garden = Book('The Yellow Garden')
+    phantom = Book('The Phantom Toll Booth')
+    hobbit = Book('The Hobbit')
+    websters = Book('Websters Dictionary')
+    guide = Book('Python for Dummies')
+    jane = Book('Sense and Sensibility')
+
+    shelf1.add_books(str(harry_potter))
+    seattle.add_shelves(str(shelf1))
+
+    shelf2.add_books(str(yellow_garden))
+    seattle.add_shelves(str(shelf2))
+
+    shelf3.add_books(str(phantom))
+    seattle.add_shelves(str(shelf3))
     seattle.report_books()
 
     print("\nAdding 'The Hobbit' to shelf 1:")
