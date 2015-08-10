@@ -42,13 +42,8 @@ class Shelf(object):
         if (book not in self.books):
             print('Title does not exist on shelf.')
         else:
-            if (Book.book_id > 0):
-                Book.book_id -= 1
-                self.books.remove(book)
-                return self.books
-            else:
-                self.books.remove(book)
-                return self.books
+            self.books.remove(book)
+            return self.books
 
 
 class Book(object):
@@ -107,7 +102,9 @@ if __name__ == '__main__':
 
     print('\nRemoving copy of existent book:')
     shelf2.remove_books(str(yellow_garden))
-    seattle.report_books()
+    print('Shelf 2: {}'.format(shelf2))
+    shelf2.remove_books('The Yellow Garden(1)')
+    print('Shelf 2: {}'.format(shelf2))
 
     print('\nTrying to remove non-existent book:')
     shelf3.remove_books(str(jane))
@@ -119,20 +116,6 @@ if __name__ == '__main__':
     print("\nRemoving 'Harry Potter' from shelf 1:")
     shelf1.remove_books(str(harry_potter))
     seattle.report_books()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
