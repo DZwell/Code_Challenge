@@ -8,7 +8,7 @@ $(function() {
            text.fadeOut(2000);
         }
         else {
-            $('#list').prepend('<li>' + value + '</li>' + '<br>');
+            $('#list').prepend('<li>' + value + '</li>');
             $('#input').val('');
             $removeItem();
         }
