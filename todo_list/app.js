@@ -5,7 +5,7 @@ $(function() {
         if(value == '') {
            var text = $('#alert').text('List cannot be left blank!');
            text.fadeIn();
-           text.fadeOut(2000);
+           text.fadeOut(2500);
         }
         else {
             $('#list').prepend('<li>' + value + '</li>');
