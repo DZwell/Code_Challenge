@@ -1,0 +1,23 @@
+<h1>{{ welcome }}</h1>
+
+<head>
+{% block content %}
+    <div id="botlist">
+        {% for robot in robots %}
+        <h3>{{ robot.name }}</h3>
+        <ul><p>Strength - {{ robot.strength }}</p>
+        <p>Agility - {{ robot.agility }}</p>
+        <p>Armour - {{ robot.armour }}</p><br></ul>
+        {% endfor %}
+    </div>
+    <div id="newbots">
+        <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+            <button type="submit" value="Robot">Submit</button>
+        </form>
+
+    </div>
+{% endblock %}
+</head>
