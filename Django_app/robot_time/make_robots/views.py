@@ -1,8 +1,9 @@
+    # import pdb; pdb.set_trace()
 from django.shortcuts import render
+
 from make_robots.models import Robot
 from .forms import RobotForm
 
-    # import pdb; pdb.set_trace()
 
 def all_robots(request):
     bots = Robot.objects.all().order_by('name')
@@ -20,30 +21,14 @@ def all_robots(request):
     return render(request, 'make_robots/allrobots.html', context)
 
 
-    # For Delete button:
-    def delete_bot(request):
-        this_bot = Robot.name.delete(request.POST)
-
-        context = {
-            'this_bot': this_bot
-        }
-
-        return render(request, 'make_robots/allrobots.html', context)
-    # Write delete view
-    # Go into URLS create route
-    # Grab individual instance of Robot
-        # using .name
-
-
-def new_robot(request):
-    form = RobotForm(request.POST or None)
-
-    if (form.is_valid()):
-        instance = form.save()
-        instance.save()
+def delete_bot(request):
+    this_bot = Robot.objects.filter(name=request.POST['robot_name'])
+    this_bot.delete()
 
     context = {
-        'form': form
+        'this_bot': this_bot
     }
+
     return render(request, 'make_robots/allrobots.html', context)
+
 

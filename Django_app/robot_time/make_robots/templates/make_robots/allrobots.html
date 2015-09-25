@@ -7,10 +7,11 @@
 <head>
 {% block content %}
     <div id="botlist">
-        <form id="botlist" action="delete_bot" name="delete_bot" method="POST">
+        <form id="botlist" action="{% url 'delete_bot' %}" method="POST" accept="-charset="utf-8" enctype="multipart/form-data"">
             {% csrf_token %}
             {% for robot in robots %}
             <h3>{{ robot.name }}</h3>
+            <input value="{{ robot.name }}" name="robot_name" hidden>
             <ul><p>Strength - {{ robot.strength }}</p>
             <p>Agility - {{ robot.agility }}</p>
             <p>Armour - {{ robot.armour }}</p><br></ul>
