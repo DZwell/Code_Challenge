@@ -1,14 +1,22 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'make_robots/style.css' %}" />
+
 <h1>{{ welcome }}</h1>
 
 <head>
 {% block content %}
     <div id="botlist">
-        {% for robot in robots %}
-        <h3>{{ robot.name }}</h3>
-        <ul><p>Strength - {{ robot.strength }}</p>
-        <p>Agility - {{ robot.agility }}</p>
-        <p>Armour - {{ robot.armour }}</p><br></ul>
-        {% endfor %}
+        <form id="botlist" action="delete_bot" name="delete_bot" method="POST">
+            {% csrf_token %}
+            {% for robot in robots %}
+            <h3>{{ robot.name }}</h3>
+            <ul><p>Strength - {{ robot.strength }}</p>
+            <p>Agility - {{ robot.agility }}</p>
+            <p>Armour - {{ robot.armour }}</p><br></ul>
+            <button class="delete" type="submit" value="delete" name="delete_bot" id="Delete_{{ Robot.name }}">Delete</button>
+            {% endfor %}
+        </form>
     </div>
     <div id="newbots">
         <form action="" method="POST">
@@ -21,3 +29,6 @@
     </div>
 {% endblock %}
 </head>
+
+
+<!-- Add name attribute to every element that will be updated. Use request.POST('nameAttribute') in my delete button method-->

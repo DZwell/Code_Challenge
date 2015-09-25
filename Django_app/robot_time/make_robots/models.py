@@ -3,7 +3,7 @@ from django.utils import timezone
 
 
 class Robot(models.Model):
-    name = models.CharField(max_length=200, blank=False, null=False)
+    name = models.CharField(max_length=200, blank=True, null=True)
     strength = models.PositiveSmallIntegerField()
     armour = models.PositiveSmallIntegerField()
     agility = models.PositiveSmallIntegerField()
