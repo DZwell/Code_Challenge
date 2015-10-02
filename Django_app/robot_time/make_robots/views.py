@@ -1,5 +1,6 @@
     # import pdb; pdb.set_trace()
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 
 from make_robots.models import Robot
 from .forms import RobotForm
@@ -13,6 +14,7 @@ def all_robots(request):
     if (form.is_valid()):
         instance = form.save()
         instance.save()
+        return HttpResponseRedirect('')
     context = {
         'robots': bots,
         'welcome': welcome,

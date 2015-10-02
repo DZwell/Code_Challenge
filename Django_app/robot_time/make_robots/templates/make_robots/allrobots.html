@@ -12,9 +12,12 @@
             {% for robot in robots %}
             <h3>{{ robot.name }}</h3>
             <input value="{{ robot.name }}" name="robot_name" hidden>
-            <ul><p>Strength - {{ robot.strength }}</p>
-            <p>Agility - {{ robot.agility }}</p>
-            <p>Armour - {{ robot.armour }}</p><br></ul>
+            <ul><input value="{{ robot.strength }}" type="number" hidden>Strength - {{ robot.strength }}
+            </input>
+            <input value="{{ robot.agility }}" type="number" hidden>Agility - {{ robot.agility }}
+            </input>
+            <input value="{{ robot.armour }}" type="number" hidden>Armour - {{ robot.armour }}
+            </input><br></ul>
             <button class="delete" type="submit" value="delete" name="delete_bot" id="Delete_{{ Robot.name }}">Delete</button>
             {% endfor %}
         </form>

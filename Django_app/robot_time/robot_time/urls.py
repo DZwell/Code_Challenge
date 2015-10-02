@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from make_robots import urls as robot_urls
+
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include(robot_urls)),
     url(r'^make_robots/', include('make_robots.urls', namespace='make_robots'))
-    # url(r'^make_robots/', include('about.urls')),
 ]
