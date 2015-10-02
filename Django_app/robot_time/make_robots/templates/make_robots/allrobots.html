@@ -7,20 +7,21 @@
 <head>
 {% block content %}
     <div id="botlist">
-        <form id="botlist" action="{% url 'delete_bot' %}" method="POST" accept="-charset="utf-8" enctype="multipart/form-data"">
+    {% for robot in robots %}
+        <form id="botlist" action="{% url 'delete_bot' %}" method="POST" enctype="multipart/form-data" target="_blank">
             {% csrf_token %}
-            {% for robot in robots %}
+            <input type="hidden" value="{{ robot.name }}">
             <h3>{{ robot.name }}</h3>
-            <input value="{{ robot.name }}" name="robot_name" hidden>
-            <ul><input value="{{ robot.strength }}" type="number" hidden>Strength - {{ robot.strength }}
+            <ul><input class="attributes" value="{{ robot.strength }}" type="number" hidden>Strength - {{ robot.strength }}
             </input>
-            <input value="{{ robot.agility }}" type="number" hidden>Agility - {{ robot.agility }}
+            <input class="attributes" value="{{ robot.agility }}" type="number" hidden>Agility - {{ robot.agility }}
             </input>
-            <input value="{{ robot.armour }}" type="number" hidden>Armour - {{ robot.armour }}
+            <input class="attributes" value="{{ robot.armour }}" type="number" hidden>Armour - {{ robot.armour }}
             </input><br></ul>
-            <button class="delete" type="submit" value="delete" name="delete_bot" id="Delete_{{ Robot.name }}">Delete</button>
-            {% endfor %}
+            <button class="delete" type="submit" value="delete" name="delete_bot" id="Delete_{{ robot.name }}">Delete</button>
+            <input type="button" class="edit" value="Edit">
         </form>
+    {% endfor %}
     </div>
     <div id="newbots">
         <form action="" method="POST">
@@ -33,6 +34,26 @@
     </div>
 {% endblock %}
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+</script>
+<script>
+    $(document).ready(function() {
+        $('.edit').click(function(){
+            $('.attributes').show();
+            // Swap original edit button and Make another edit button that submits data and hides input fields.
+        });
+        var $form = $('form');
+        $form.submit(function(){
+          $.post($(this).attr('action'), $(this).serialize(), function(response){
+                // do something here on success
+
+          },'json');
+        location.reload();
+          return false;
+       });
+    });
+
+</script>
 
 
 <!-- Add name attribute to every element that will be updated. Use request.POST('nameAttribute') in my delete button method-->

@@ -2,6 +2,6 @@
     color: green;
 }
 
-.delete {
+.delete, .edit {
     font-size: 25px;
 }
