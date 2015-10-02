@@ -10,7 +10,7 @@
     {% for robot in robots %}
         <form id="botlist" action="{% url 'delete_bot' %}" method="POST" enctype="multipart/form-data" target="_blank">
             {% csrf_token %}
-            <input type="hidden" value="{{ robot.name }}">
+            <input name="robot_name" class="attributes" value="{{ robot.name }}" hidden>
             <h3>{{ robot.name }}</h3>
             <ul><input class="attributes" value="{{ robot.strength }}" type="number" hidden>Strength - {{ robot.strength }}
             </input>
@@ -56,4 +56,4 @@
 </script>
 
 
-<!-- Add name attribute to every element that will be updated. Use request.POST('nameAttribute') in my delete button method-->
+

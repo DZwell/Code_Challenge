@@ -1,4 +1,3 @@
-    # import pdb; pdb.set_trace()
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
@@ -24,6 +23,7 @@ def all_robots(request):
 
 
 def delete_bot(request):
+    # import pdb; pdb.set_trace()
     this_bot = Robot.objects.filter(name=request.POST['robot_name'])
     this_bot.delete()
 
