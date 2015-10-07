@@ -22,25 +22,17 @@ def all_robots(request):
     return render(request, 'make_robots/allrobots.html', context)
 
 
-def delete_bot(request):
-    this_bot = Robot.objects.filter(name=request.POST['robot_name'])
-    this_bot.delete()
-
-    context = {
-        'this_bot': this_bot
-    }
-
-    return render(request, 'make_robots/allrobots.html', context)
-
-
 def edit_bot(request):
     # import pdb; pdb.set_trace()
     robot = Robot.objects.get(name=request.POST['robot_name'])
-    robot.strength = request.POST['robot_strength']
-    robot.agility = request.POST['robot_agility']
-    robot.armour = request.POST['robot_armour']
-    robot.save()
+    if request.POST['submitButton'] == 'Update':
+        robot.strength = request.POST['robot_strength']
+        robot.agility = request.POST['robot_agility']
+        robot.armour = request.POST['robot_armour']
+        robot.save()
+    elif request.POST['submitButton'] == 'Delete':
+        robot.delete()
 
-    return HttpResponseRedirect('make_robots/allrobots.html')
+    return render(request, 'make_robots/allrobots.html')
 
 

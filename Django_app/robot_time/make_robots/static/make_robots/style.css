@@ -1,19 +1,16 @@
-#botlist {
+#botlist, #newBots {
     color: green;
     font-size: 20px;
+    font-family: 'Inconsolata';
+    font-weight: bold;
 }
 
 body {
     background-image: url("http://i.stack.imgur.com/p9mUO.jpg");
 }
 
-.name {
+#botName {
     text-decoration: underline;
 }
 
-form input[name='name'] {
-    color: green;
-}
 
-.attributes {
-}
