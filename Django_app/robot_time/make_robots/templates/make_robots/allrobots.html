@@ -1,6 +1,7 @@
 {% load staticfiles %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'make_robots/style.css' %}" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
 <h1>{{ welcome }}</h1>
 
@@ -10,13 +11,13 @@
     {% for robot in robots %}
         <form id="botlist" action="{% url 'delete_bot' %}" method="POST" enctype="multipart/form-data" target="_blank">
             {% csrf_token %}
-            <input name="robot_name" value="{{ robot.name }}" hidden>
+            <input class="name" name="robot_name" value="{{ robot.name }}" hidden>
             <h3>{{ robot.name }}</h3>
             <ul>
                 <input name="robot_strength" class="attributes" value="{{ robot.strength }}" type="number" hidden>Strength - {{ robot.strength }}
-                </input>
+                </input><br>
                 <input name="robot_agility" class="attributes" value="{{ robot.agility }}" type="number" hidden>Agility - {{ robot.agility }}
-                </input>
+                </input><br>
                 <input name="robot_armour" class="attributes" value="{{ robot.armour }}" type="number" hidden>Armour - {{ robot.armour }}
                 </input><br>
             </ul>
