@@ -10,16 +10,21 @@
     {% for robot in robots %}
         <form id="botlist" action="{% url 'delete_bot' %}" method="POST" enctype="multipart/form-data" target="_blank">
             {% csrf_token %}
-            <input name="robot_name" class="attributes" value="{{ robot.name }}" hidden>
+            <input name="robot_name" value="{{ robot.name }}" hidden>
             <h3>{{ robot.name }}</h3>
-            <ul><input class="attributes" value="{{ robot.strength }}" type="number" hidden>Strength - {{ robot.strength }}
-            </input>
-            <input class="attributes" value="{{ robot.agility }}" type="number" hidden>Agility - {{ robot.agility }}
-            </input>
-            <input class="attributes" value="{{ robot.armour }}" type="number" hidden>Armour - {{ robot.armour }}
-            </input><br></ul>
+            <ul>
+                <input name="robot_strength" class="attributes" value="{{ robot.strength }}" type="number" hidden>Strength - {{ robot.strength }}
+                </input>
+                <input name="robot_agility" class="attributes" value="{{ robot.agility }}" type="number" hidden>Agility - {{ robot.agility }}
+                </input>
+                <input name="robot_armour" class="attributes" value="{{ robot.armour }}" type="number" hidden>Armour - {{ robot.armour }}
+                </input><br>
+            </ul>
             <button class="delete" type="submit" value="delete" name="delete_bot" id="Delete_{{ robot.name }}">Delete</button>
-            <input type="button" class="edit" value="Edit">
+        </form>
+        <form action="{% url 'edit_bot' %}" method="POST" enctype="multipart/form-data" target="_blank">
+            <input type="button" class="edit" id="edit" value="Edit">
+            <button class="save" id="save" type="submit" value="changed_bot" name="edit_bot" hidden>Save</button>
         </form>
     {% endfor %}
     </div>
@@ -40,6 +45,9 @@
     $(document).ready(function() {
         $('.edit').click(function(){
             $('.attributes').show();
+            $('.save').show();
+            $('.edit').hide();
+
             // Swap original edit button and Make another edit button that submits data and hides input fields.
         });
         var $form = $('form');
