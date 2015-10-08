@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 
 from make_robots.models import Robot
@@ -7,7 +7,7 @@ from .forms import RobotForm
 
 def all_robots(request):
     bots = Robot.objects.all().order_by('name')
-    welcome = 'Hey %s! Let\'s make some robots.' % (request.user)
+    welcome = 'Hey {user}! Let\'s make some robots.'.format(user=request.user)
     form = RobotForm(request.POST or None)
 
     if (form.is_valid()):
@@ -33,6 +33,6 @@ def edit_bot(request):
     elif request.POST['submitButton'] == 'Delete':
         robot.delete()
 
-    return render(request, 'make_robots/allrobots.html')
+    return redirect('all_robots')
 
 

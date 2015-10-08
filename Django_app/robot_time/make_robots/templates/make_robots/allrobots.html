@@ -4,13 +4,13 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
 
-<h1>{{ welcome }}</h1>
+<h1 id="header">{{ welcome }}</h1>
 
 <head>
 {% block content %}
     <div>
     {% for robot in robots %}
-        <form id="botlist" action="{% url 'edit_bot' %}" method="POST" enctype="multipart/form-data" target="_blank">
+        <form id="botlist" action="{% url 'edit_bot' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <input id="botName" class="name" name="robot_name" value="{{ robot.name }}" hidden>
             <h3>{{ robot.name }}</h3>
@@ -50,17 +50,7 @@
 
             // Swap original edit button and Make another edit button that submits data and hides input fields.
         });
-        var $form = $('form');
-        $form.submit(function(){
-          $.post($(this).attr('action'), $(this).serialize(), function(response){
-                // do something here on success
-
-          },'json');
-        location.reload();
-          return false;
        });
-    });
-
 </script>
 
 
