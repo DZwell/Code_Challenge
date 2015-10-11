@@ -3,19 +3,21 @@
     font-size: 20px;
     font-family: 'Inconsolata';
     font-weight: bold;
+
 }
 
 body {
     background-image: url("http://i.stack.imgur.com/p9mUO.jpg");
 }
 
-#botName {
-    text-decoration: underline;
-}
-
 #header {
     color: green;
     font-family: 'Inconsolata';
     font-weight: bolder;
+    text-align: center;
 
+}
+
+#id_fields {
+    width: 1000px;
 }
