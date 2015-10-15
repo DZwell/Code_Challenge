@@ -12,6 +12,6 @@ import os
 from django.core.wsgi import get_wsgi_application
 from dj_static import Cling
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "robot_time.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "robot-time.settings")
 
 application = Cling(get_wsgi_application())

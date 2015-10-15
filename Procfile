@@ -1,1 +1,1 @@
-web: gunicorn robot_time.wsgi --log-file -
+web: gunicorn robot-time.wsgi --log-file -
